@@ -1,7 +1,7 @@
 # Lovely Information SUPPORT companion
 
 
-LiSc might be helpful for you. It is a firefox plugin which lets you access html code directly, let you implement the parsing and storing what you parsed into a database.
+LiSc might be helpful for you. It is a FireFox plugin which lets you access html code directly, let you implement the parsing and storing what you parsed into a database.
 
 
 ## TODO for you  
