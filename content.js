@@ -1,17 +1,15 @@
 browser.runtime.onMessage.addListener((message, sender, sendResponse) => {
-    console.log("content set up");
-    if (message.action === "parseHTML") {
-      
-      if (document.readyState === 'complete') {
-        const htmlContent = document.documentElement.innerHTML; 
-        const url = window.location.href;
-        sendResponse({result: 'successful', url, htmlContent});
-      } else {
-        sendResponse({result: 'failed'})
-      }
+  console.log("content set up");
+  if (message.action === "parseHTML") {
+    if (document.readyState === 'complete') {
+      const htmlContent = document.documentElement.innerHTML; 
+      const url = window.location.href;
+      sendResponse({result: 'successful', url, htmlContent});
     } else {
-        sendResponse({result: 'not ready'})
+      sendResponse({result: 'failed'})
     }
-    return true; 
-  });
-  
+  } else {
+      sendResponse({result: 'not ready'})
+  }
+  return true; 
+});

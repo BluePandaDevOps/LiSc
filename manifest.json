@@ -10,7 +10,7 @@
     "notifications"
   ],
   "background": {
-    "scripts": ["background.js"],
+    "scripts": ["./logic/background.js"],
     "persistent": false,
     "type": "module"
   },

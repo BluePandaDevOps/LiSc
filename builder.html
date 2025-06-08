@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Existing Plugin with Table</title>
+
+  <!-- Link to External CSS File -->
+  <link rel="stylesheet" href="./css/style.css">
+
+</head>
+<body>
+    <h2>Keyword Context Matcher</h2>
+
+    <div style="display: flex; align-items: center; gap: 10px;">
+        <div>Building mode prevents the adding of new entries. It is used to test the logic how pages are parsed to adept them.</div>
+        <label class="switch">
+            <input type="checkbox" id="toggleSliderBuilderMode">
+            <span class="slider round"></span>
+          </label>
+          <span id="modeLabelBuilderMode">Enable Building Mode</span>
+         
+    </div>
+    <button id="deleteDatabaseBtn">Delete Database</button>
+    <div id="deleteDatabaseStatus" style="margin-top:10px;color: red;"></div>
+    <button id="exportAllStoresBtn">Export Stores</button>
+    <input type="file" id="importFile" accept="application/json" />
+    
+
+    <button id="refreshRawHTMLbtn">Refresh raw HTML store</button>
+    <div class="raw-html-table-container">
+        <table id="rawHTMLTable">
+          <caption>Raw HTML data sets</caption>
+          <thead>
+            <tr>
+              <th>URL</th>
+              <th>Time</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Rows will be populated here -->
+          </tbody>
+        </table>
+      </div>
+    
+
+    <div class="form-group">
+        <div style="margin-bottom: 10px;">
+            <div id="errorMessage" style="color: red; margin-bottom: 8px;"></div>
+            <input type="text" id="newUrlInput" placeholder="Enter url">
+            <input type="text" id="newTypeInput" placeholder="Enter type">
+            <input type="text" id="newPatternInput" placeholder="Enter pattern">
+            <button type="button" id="addKeywordBtn">Add Entry</button>
+          </div>
+        <label>Keywords:</label>
+        
+        <table id="keywordsTable" border="1" style="border-collapse: collapse; margin-top: 8px;">
+          <thead>
+            <tr>
+                <th>Url</th>
+                <th>Type</th>
+                <th>Pattern</th>
+                <th>Deletion</th>
+                
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Rows with keyword inputs will be here -->
+          </tbody>
+        </table>
+      </div>
+    
+
+    
+    <h3>Context Results</h3>
+    <button id="fetch-content">Fetch & Match</button>
+    <table id="fetchMatchTable" border="1" style="border-collapse: collapse; margin-top: 8px;">
+        <thead>
+          <tr>
+                <th>Url</th>
+                <th>Type</th>
+                <th>Pattern</th>
+                <th>Matched Content</th>
+                <th>Path</th>
+                <th>Successfull on other pages</th>
+                <th>Unsuccessfull on other pages</th>
+                <th>Selection</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Rows with keyword inputs will be here -->
+        </tbody>
+      </table>
+
+
+
+      <h3>Selected Paths</h3>
+    <button id="createSelectedPathsBtn">Update selected paths</button>
+    <table id="selectedPathsTable" border="1" style="border-collapse: collapse; margin-top: 8px;">
+        <thead>
+          <tr>
+              <th>Type</th>
+              <th>Paths</th>
+              <th>Include Parent Texts</th>
+              <th>Split Details</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Rows with keyword inputs will be here -->
+        </tbody>
+      </table>
+
+      <h3>Validation Results - Success</h3>
+    <button id="validatePathsBtn">Validate paths</button>
+    <button id="moveSelectedSuccessBtn">Move selected to results</button>
+    
+    <table id="validatePathsTableSuccess" border="1" style="border-collapse: collapse; margin-top: 8px;">
+        <thead>
+          <tr>
+            <th>Url</th>
+            <th>Type</th>
+            <th>Data</th>
+            <th><input type="checkbox" id="checkAllSuccessBoxes"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Rows with keyword inputs will be here -->
+        </tbody>
+      </table>
+
+      <h3>Validation Results - Issues</h3>
+      <table id="validatePathsTableFailure" border="1" style="border-collapse: collapse; margin-top: 8px;">
+        <thead>
+          <tr>
+            <th>Url</th>
+            <th>Type</th>
+            <th>Paths</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Rows with keyword inputs will be here -->
+        </tbody>
+      </table>
+    </div>
+
+
+    </div>
+
+
+    <h3>End Results</h3>
+    <button id="exportResultsFromDatabaseBtn">Export results from database</button>
+    <table id="finalResultsTable" border="1" style="border-collapse: collapse; margin-top: 8px;">
+
+      <tbody>
+        <!-- Rows with keyword inputs will be here -->
+      </tbody>
+    </table>
+  </div>
+
+
+  </div>
+
+</body>
+    <script type="module" src="./components/builder_parser_website.js" defer></script>
+    <script type="module" src="./components/fetchMatchPaths.js" defer></script>
+    <script type="module" src="./components/finalResult.js" defer></script>
+    <script type="module" src="./components/importExport.js" defer></script>
+    <script type="module" src="./components/matchPatterns.js" defer></script>
+    <script type="module" src="./components/pathSelection.js" defer></script>
+    <script type="module" src="./components/pathValidation.js" defer></script>
+    <script type="module" src="./components/rawHTMLstore.js" defer></script>
+    <script type="module" src="./components/utils.js" defer></script>
+
+    <script type="module" src="./data/builder_parser_store.js" defer></script>
+</html>

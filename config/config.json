@@ -1,0 +1,23 @@
+{
+    "allowedSites": [
+      "linkedin"
+    ],
+    "indexedDB": {
+      "databaseName": "contentDatabase",
+      "version": 1,
+      "stores": [
+        {
+          "storeName": "contentStore",
+          "keyPath": "url",
+          "indexes": [
+            {
+                "name": "urlIndex",
+                "keyPath": "url",
+                "unique": false
+            }
+          ]
+        }
+      ]
+    }
+  }
+  

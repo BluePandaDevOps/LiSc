@@ -1,5 +1,9 @@
 let config = null;
 
+const CONFIG_PATH = 'config/config.json'
+export const IN_BUILD_PARSER_MODE = { flag: false };
+  
+
 
 export async function loadConfig() {
     if (config) {
@@ -7,7 +11,7 @@ export async function loadConfig() {
     }
 
     try {
-        const response = await fetch('config.json');
+        const response = await fetch(CONFIG_PATH);
         if (!response.ok) {
             throw new Error(`Failed to load config: ${response.status}`);
         }

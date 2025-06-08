@@ -23,4 +23,11 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+
+    const button = document.getElementById('open-builder');
+    button.addEventListener('click', () => {
+        window.open('builder.html', '_blank');
+    });
+
 });
+
