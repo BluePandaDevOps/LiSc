@@ -1,0 +1,43 @@
+{
+  "manifest_version": 2,
+  "name": "LiSc",
+  "version": "1.0",
+  "permissions": [
+    "activeTab",
+    "tabs",
+    "storage",
+    "downloads",
+    "notifications"
+  ],
+  "background": {
+    "scripts": [
+      "./logic/background.js"
+    ],
+    "persistent": false,
+    "type": "module"
+  },
+  "browser_action": {
+    "default_popup": "popup.html",
+    "default_title": "HTML Parser",
+    "default_icon": {
+      "16": "icons/favicon-blue-16x16.png",
+      "32": "icons/favicon-blue-32x32.png"
+    }
+  },
+  "icons": {
+    "16": "icons/favicon-blue-16x16.png",
+    "32": "icons/favicon-blue-32x32.png",
+    "192": "icons/favicon-blue-192x192.png",
+    "512": "icons/favicon-blue-512x512.png"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "content.js"
+      ]
+    }
+  ]
+}

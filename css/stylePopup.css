@@ -1,0 +1,33 @@
+/* popup.css */
+
+:root {
+    --primary-color: #4da6ff;
+    --secondary-color: #f7f9fc;
+    --accent-color: #ffffff;
+    --text-color: #333;
+    --border-color: #ddd;
+    --border-radius: 6px;
+    --font-family: "Segoe UI", Roboto, sans-serif;
+    --box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    --transition: 0.3s ease;
+  }
+
+  /* Buttons */
+  button {
+    padding: 8px 14px;
+    font-size: 0.95rem;
+    border-radius: var(--border-radius);
+    border: none;
+    background-color: var(--primary-color);
+    color: white;
+    cursor: pointer;
+    box-shadow: var(--box-shadow);
+    transition: background-color var(--transition);
+    display: inline-block;
+    user-select: none;
+    min-width: 90px;
+  }
+  
+  button:hover {
+    background-color: #3399ff;
+  }
