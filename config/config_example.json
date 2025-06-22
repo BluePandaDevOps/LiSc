@@ -1,0 +1,27 @@
+{
+  "allowedSites": [
+    "example"
+  ],
+  "indexedDB": {
+    "databaseName": "contentDatabase",
+    "version": 1,
+    "stores": [
+      {
+        "storeName": "contentStore",
+        "keyPath": "id",
+        "indexes": [
+          {
+            "name": "urlIndex",
+            "keyPath": "url",
+            "unique": false
+          },
+          {
+            "name": "timestampIndex",
+            "keyPath": "timestamp",
+            "unique": false
+          }
+        ]
+      }
+    ]
+  }
+}

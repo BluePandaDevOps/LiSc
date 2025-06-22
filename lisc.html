@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Existing Plugin with Table</title>
+
+    <!-- Link to External CSS File -->
+    <link rel="stylesheet" href="./css/style.css">
+
+</head>
+
+<body>
+    <div class="fixed-bg">
+        <img src="./icons/background.webp" alt="Background Image" />
+    </div>
+    <div id="global-tooltip" class="tooltip-box"></div>
+
+    <div class="container">
+        <header>
+            <nav>
+                <a class="tab-link active" data-tab="rawCollection">Raw Collection</a>
+                <a class="tab-link" data-tab="matchingPatterns">Matching Patterns</a>
+                <a class="tab-link" data-tab="pathOptions">Path Options</a>
+                <a class="tab-link" data-tab="pathSelection">Path Selection</a>
+                <a class="tab-link" data-tab="pathValidation">Path Validation</a>
+                <a class="tab-link" data-tab="endResults">Results</a>
+                <a class="tab-link" data-tab="exportImport">Export & Import</a>
+            </nav>
+        </header>
+
+        <section id="rawCollection" class="tab-content active">
+
+            <div class="text-container">>
+                <div>Enable the collection mode to store new website content to be matched afterwards when browsing tabs. Trun it off again when you do not want to add new stuff automatically.</div>
+                <label class="switch">
+                    <input type="checkbox" id="toggleSliderBuilderMode">
+                    <span class="slider round"></span>
+                </label>
+                <span id="modeLabelBuilderMode">Enable Building Mode</span>
+
+            </div>
+
+
+            <div class="bar-wrapper">
+                <div class="top-bar">
+                    <div class="left-buttons">
+                        <button id="refreshRawHTMLbtn">Refresh</button>
+                    </div>
+                    <div class="right-buttons">
+                        <button id="nextPatterns">Next</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Search bar with white background -->
+            <div class="bar-wrapper">
+                <div class="search-bar">
+                    <input type="text" id="tableRawHTMLSearch" class="search-input"
+                        placeholder="Search (e.g. pattern=name AND url=test.com)">
+                    <button id="searchRawHTMLBtn">Search</button>
+                    <button id="clearRawHTMLBtn">Clear</button>
+                </div>
+            </div>
+            <div class="raw-html-table-container">
+                <table id="rawHTMLTable">
+                    <colgroup>
+                        <col style="width: 85%">
+                        <col style="width: 10%">
+                        <col style="width: 5%">
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th data-key="url">Url</th>
+                            <th data-key="time">Time</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Rows will be populated here -->
+                    </tbody>
+                </table>
+            </div>
+
+        </section>
+
+
+
+
+        <section id="matchingPatterns" class="tab-content">
+            <div class="bar-wrapper">
+                <div class="top-bar">
+                    <div class="left-buttons">
+                        <button id="addKeywordBtn">New Pattern</button>
+                         <button id="refreshPatterns">Refresh</button>
+                    </div>
+                    <div class="right-buttons">
+                       
+                        <button id="nextPathOptions">Next</button>
+                        
+                    </div>
+                </div>
+            </div>
+
+            <!-- Search bar with white background -->
+            <div class="bar-wrapper">
+                <div class="search-bar">
+                    <input type="text" id="tablePatternsSearch" class="search-input"
+                        placeholder="Search (e.g. pattern=name AND url=test.com)">
+                    <button id="searchPatternsBtn">Search</button>
+                    <button id="clearPatternsBtn">Clear</button>
+                </div>
+            </div>
+            <div class="form-group">
+                <div style="margin-bottom: 10px;">
+                    <div id="errorMessage" style="color: red; margin-bottom: 8px;"></div>
+
+                    <!-- Overlay -->
+                    <div id="overlay" class="overlay"></div>
+
+                    <!-- Sliding panel -->
+                    <div id="sidePanel" class="side-panel" aria-hidden="true" role="dialog"
+                        aria-labelledby="panelTitle">
+                        <button class="close-btn" id="closePanelBtn" aria-label="Close panel">&times;</button>
+                        <h2 id="panelTitle">Fill in the Details</h2>
+                        <form id="panelForm">
+                            <label for="urlInput">Url</label>
+                            <input type="text" id="newUrlInput" placeholder="Enter Url">
+
+                            <label for="typeInput">Pattern Type</label>
+                            <input type="text" id="newTypeInput" placeholder="Enter Pattern Type">
+
+                            <label for="patternInput">Pattern</label>
+                            <input type="text" id="newPatternInput" placeholder="Enter Pattern">
+                            <button type="submit" class="submit-btn">Submit</button>
+                        </form>
+                    </div>
+                </div>
+
+                <table id="patternsTable">
+                    <thead>
+                        <tr>
+                            <th data-key="url">Url</th>
+                            <th data-key="type">Type</th>
+                            <th data-key="pattern">Pattern</th>
+                            <th class="actions-col">Actions</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Rows with keyword inputs will be here -->
+                    </tbody>
+                </table>
+            </div>
+
+        </section>
+        <section id="pathOptions" class="tab-content">
+
+            <div class="bar-wrapper">
+                <div class="top-bar">
+                    <div class="left-buttons">
+                        <button id="fetch-content">Fetch & Match</button>
+                    </div>
+                    <div class="right-buttons">
+                        <button id="createSelectedPathsBtn">Update selected paths</button>
+                        <button id="nextpathSelection">Next</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Search bar with white background -->
+            <div class="bar-wrapper">
+                <div class="search-bar">
+                    <input type="text" id="tableFatchAndMatchSearch" class="search-input"
+                        placeholder="Search (e.g. pattern=name AND url=test.com)">
+                    <button id="searchFatchAndMatchBtn">Search</button>
+                    <button id="clearFatchAndMatchBtn">Clear</button>
+                </div>
+            </div>
+            <div style="overflow-x: auto;">
+                <table id="fetchMatchTable">
+                    <colgroup>
+                        <col style="width: 10%">
+                        <col style="width: 10%">
+                        <col style="width: 10%">
+                        <col style="width: 15%">
+                        <col style="width: 40%">
+                        <col style="width: 1%">
+                        <col style="width: 1%">
+                        <col style="width: 1%">
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th data-key="url">URL</th>
+                            <th data-key="type">Type</th>
+                            <th data-key="pattern">Pattern</th>
+                            <th data-key="matched">Content</th>
+                            <th data-key="path">Path</th>
+                            <th>+
+                                <span class="tooltip-icon"
+                                    data-tooltip="All stored raw HTML pages in the database where searched and these are the pages containing the path">?</span>
+                            </th>
+                            <th>-
+                                <span class="tooltip-icon"
+                                    data-tooltip="All stored raw HTML pages in the database where searched and these are the pages not containing the path">?</span>
+                            </th>
+                            <th>X
+                                <span class="tooltip-icon"
+                                    data-tooltip="Check all paths you would like to care over for validation. Press update selected paths when you are done.">?</span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Rows with keyword inputs will be here -->
+                    </tbody>
+                </table>
+            </div>
+
+        </section>
+        <section id="pathSelection" class="tab-content">
+
+            <div class="bar-wrapper">
+                <div class="top-bar">
+                    <div class="left-buttons">
+                    </div>
+                    <div class="right-buttons">
+                        <button id="nextpathValidation">Next</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Search bar with white background -->
+            <div class="bar-wrapper">
+                <div class="search-bar">
+                    <input type="text" id="tablePathSelectionSearch" class="search-input"
+                        placeholder="Search (e.g. pattern=name AND url=test.com)">
+                    <button id="searchPathSelectionBtn">Search</button>
+                    <button id="clearPathSelectionBtn">Clear</button>
+                </div>
+            </div>
+
+            <div class="table-wrapper">
+                <table id="selectedPathsTable">
+                    <thead>
+                        <tr>
+                            <th data-key="type">Type</th>
+                            <th data-key="paths">Paths</th>
+                            <th class="actions-col">Include Parent Texts</th>
+                            <th>Split Details</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Rows with keyword inputs will be here -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        <section id="pathValidation" class="tab-content">
+
+            <div class="bar-wrapper">
+                <div class="top-bar">
+                    <div class="left-buttons">
+                        <button id="validatePathsBtn">Validate paths</button>
+                        <button id="moveSelectedSuccessBtn">Move selected to results</button>
+                    </div>
+                    <div class="right-buttons">
+                        <button id="nextResults">Next</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-container">
+                <h3>Validation Results - Success</h3>
+            </div>
+
+            <!-- Search bar with white background -->
+            <div class="bar-wrapper">
+                <div class="search-bar">
+                    <input type="text" id="tablePathValidationSSearch" class="search-input"
+                        placeholder="Search (e.g. pattern=name AND url=test.com)">
+                    <button id="searchPathValidationSBtn">Search</button>
+                    <button id="clearPathValidationSBtn">Clear</button>
+                </div>
+            </div>
+
+            <table id="validatePathsTableSuccess">
+                <thead>
+                    <tr>
+                        <th data-key="url">Url</th>
+                        <th data-key="type">Type</th>
+                        <th data-key="data">Data</th>
+                        <th class="actions-col"><input type="checkbox" id="checkAllSuccessBoxes"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Rows with keyword inputs will be here -->
+                </tbody>
+            </table>
+
+
+            <div class="text-container">
+                <h3>Validation Results - Issues</h3>
+            </div>
+            <!-- Search bar with white background -->
+            <div class="bar-wrapper">
+                <div class="search-bar">
+                    <input type="text" id="tablePathValidationFSearch" class="search-input"
+                        placeholder="Search (e.g. pattern=name AND url=test.com)">
+                    <button id="searchPathValidationFBtn">Search</button>
+                    <button id="clearPathValidationFBtn">Clear</button>
+                </div>
+            </div>
+
+            <table id="validatePathsTableFailure">
+                <thead>
+                    <tr>
+                        <th data-key="url">Url</th>
+                        <th data-key="type">Type</th>
+                        <th data-key="paths">Paths</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Rows with keyword inputs will be here -->
+                </tbody>
+            </table>
+        </section>
+        <section id="endResults" class="tab-content">
+
+
+            <div class="bar-wrapper">
+                <div class="top-bar">
+                    <div class="left-buttons">
+                       
+                    </div>
+                    <div class="right-buttons">
+                        <button id="exportResultsFromDatabaseBtn">Export results from database</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Search bar with white background -->
+            <div class="bar-wrapper">
+                <div class="search-bar">
+                    <input type="text" id="tableResultsSearch" class="search-input"
+                        placeholder="Search (e.g. pattern=name AND url=test.com)">
+                    <button id="searchResultsBtn">Search</button>
+                    <button id="clearResultsSBtn">Clear</button>
+                </div>
+            </div>
+            
+            <table id="finalResultsTable">
+                <tbody>
+                    <!-- Rows with keyword inputs will be here -->
+                </tbody>
+            </table>
+        </section>
+        <section id="exportImport" class="tab-content">
+            <div class="text-container">>
+                <div>Upload a previously exported database state.</div>
+                <input type="file" id="importFile" accept="application/json" />
+            </div>
+            <div class="bar-wrapper">
+                <div class="top-bar">
+                    <div class="left-buttons">
+                        <button id="deleteDatabaseBtn">Delete Database</button>
+                        <div id="deleteDatabaseStatus" style="margin-top:10px;color: red;"></div>
+                        <button id="exportAllStoresBtn">Export Stores</button>
+                        
+                    </div>
+                    <div class="right-buttons">
+                    </div>
+                </div>
+            </div>
+            
+            
+            
+           
+        </section>
+    </div>
+</body>
+<script type="module" src="./components/builder_parser_website.js" defer></script>
+<script type="module" src="./components/pathOptions.js" defer></script>
+<script type="module" src="./components/finalResult.js" defer></script>
+<script type="module" src="./components/importExport.js" defer></script>
+<script type="module" src="./components/matchPatterns.js" defer></script>
+<script type="module" src="./components/pathSelection.js" defer></script>
+<script type="module" src="./components/pathValidation.js" defer></script>
+<script type="module" src="./components/rawHTMLstore.js" defer></script>
+<script type="module" src="./components/utils.js" defer></script>
+
+<script type="module" src="./data/builder_parser_store.js" defer></script>
+
+</html>
